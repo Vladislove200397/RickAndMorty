@@ -8,7 +8,7 @@
 import Foundation
 
 enum RickAndMortyAPI: RESTConstructor {
-    case getCharactersPagination(page: Int? = 1)
+    case getCharactersPagination(page: Int)
     case getCharacterInfo(URL: String? = nil)
     case getCharacterPlaceInfo(URL: String? = nil)
     case getCharacterImage(URL: String? = nil)
@@ -37,7 +37,7 @@ enum RickAndMortyAPI: RESTConstructor {
         var params = [String: Any]()
         switch self {
             case .getCharactersPagination(let page):
-                params["page"] = page
+                params["page"] = "\(page)"
             default: return nil
         }
         return params
@@ -61,16 +61,15 @@ enum RickAndMortyAPI: RESTConstructor {
         var components = URLComponents(string: "\(request.baseURL)\(request.path)\(request.method.requestPathType)")!
         
         guard let  parameters = request.params else {
-            print(components.url!)
             return components
         }
 
         components.queryItems = parameters.map { (key, value) in
-            URLQueryItem(name: key, value: value as? String)
+            return URLQueryItem(name: key, value: value as? String)
         }
         
         components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
-        print(components.url!)
+        print(components.url)
         return components
     }
     

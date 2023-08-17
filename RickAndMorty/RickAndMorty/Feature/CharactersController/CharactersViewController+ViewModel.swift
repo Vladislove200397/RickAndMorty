@@ -12,7 +12,11 @@ extension CharactersViewController {
         private var loadTask: Task<Void, Never>?
         private var getDataService: NetworkManager<CharactersListModel>
         @Published private(set) var characterList: CharactersListModel?
+        @Published private(set) var characters: [Content] = []
         @Published private(set) var requestError: Error?
+        private(set) var currentPage: Int = 1
+        private(set) var totalPages: Int = 0
+        var isLoading: Bool = false
         
         init(getDataService: NetworkManager<CharactersListModel>) {
             self.getDataService = getDataService
@@ -23,11 +27,25 @@ extension CharactersViewController {
             loadTask?.cancel()
             loadTask = Task {
                 do {
-                    let charactersPaginationData = try await getDataService.getData(.getCharactersPagination(page: 1))
+                    let charactersPaginationData = try await getDataService.getData(.getCharactersPagination(page: currentPage))
                     characterList = charactersPaginationData
+                    characters += charactersPaginationData.results
+                    totalPages = charactersPaginationData.info.pages
                 } catch {
                     requestError = error
+                    self.showAlert(title: "Error", message: error.localizedDescription) {[weak self] in
+                        guard let self else { return }
+                        self.getPaginationRequest(page: self.currentPage)
+                    }
                 }
+            }
+        }
+        
+        @MainActor func fetchMoreData() {
+            if !isLoading {
+                currentPage += 1
+                getPaginationRequest(page: currentPage)
+                isLoading = true
             }
         }
     }

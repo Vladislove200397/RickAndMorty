@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9C428182A8E396100E8F97E /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C428172A8E396100E8F97E /* CharacterView.swift */; };
+		B9C4281C2A8E398700E8F97E /* CharacterView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C4281B2A8E398700E8F97E /* CharacterView+ViewModel.swift */; };
+		B9C428232A8E3EC400E8F97E /* UIIMageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C428222A8E3EC400E8F97E /* UIIMageView+Extension.swift */; };
 		B9E738F92A8D6EDA0062594F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E738F82A8D6EDA0062594F /* AppDelegate.swift */; };
 		B9E738FB2A8D6EDA0062594F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E738FA2A8D6EDA0062594F /* SceneDelegate.swift */; };
 		B9E739022A8D6EDC0062594F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9E739012A8D6EDC0062594F /* Assets.xcassets */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9C428172A8E396100E8F97E /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		B9C4281B2A8E398700E8F97E /* CharacterView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterView+ViewModel.swift"; sourceTree = "<group>"; };
+		B9C428222A8E3EC400E8F97E /* UIIMageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIIMageView+Extension.swift"; sourceTree = "<group>"; };
 		B9E738F52A8D6EDA0062594F /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E738F82A8D6EDA0062594F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E738FA2A8D6EDA0062594F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +107,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B9C428192A8E397600E8F97E /* CharacterView */ = {
+			isa = PBXGroup;
+			children = (
+				B9C428172A8E396100E8F97E /* CharacterView.swift */,
+				B9C4281B2A8E398700E8F97E /* CharacterView+ViewModel.swift */,
+			);
+			path = CharacterView;
+			sourceTree = "<group>";
+		};
+		B9C428272A8E615900E8F97E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		B9E738EC2A8D6EDA0062594F = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +159,7 @@
 		B9E7390C2A8D6EF60062594F /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				B9C428272A8E615900E8F97E /* New Group */,
 				B9E739172A8D70430062594F /* CharactersController */,
 			);
 			path = Feature;
@@ -147,6 +170,7 @@
 			children = (
 				B9E7391C2A8D71F10062594F /* UIColor+Extension.swift */,
 				B9E739222A8D75A60062594F /* UIFont+Extension.swift */,
+				B9C428222A8E3EC400E8F97E /* UIIMageView+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -228,6 +252,7 @@
 		B9E7394F2A8D7D030062594F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B9C428192A8E397600E8F97E /* CharacterView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -362,12 +387,15 @@
 				B9E739162A8D6FA40062594F /* BasicViewModel.swift in Sources */,
 				B9E739572A8D80920062594F /* RickAndMortyAPI.swift in Sources */,
 				B9E739142A8D6F7D0062594F /* BasicController.swift in Sources */,
+				B9C4281C2A8E398700E8F97E /* CharacterView+ViewModel.swift in Sources */,
 				B9E739552A8D808B0062594F /* NetworkManager.swift in Sources */,
 				B9E739192A8D705F0062594F /* CharactersViewController.swift in Sources */,
 				B9E739232A8D75A60062594F /* UIFont+Extension.swift in Sources */,
 				B9E738FB2A8D6EDA0062594F /* SceneDelegate.swift in Sources */,
 				B9E7395A2A8E24A20062594F /* RESTConstructor.swift in Sources */,
+				B9C428182A8E396100E8F97E /* CharacterView.swift in Sources */,
 				B9E739622A8E2CC20062594F /* OriginModel.swift in Sources */,
+				B9C428232A8E3EC400E8F97E /* UIIMageView+Extension.swift in Sources */,
 				B9E739642A8E2CE50062594F /* EpisodeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
