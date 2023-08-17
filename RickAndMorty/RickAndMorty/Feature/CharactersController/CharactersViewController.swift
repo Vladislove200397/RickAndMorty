@@ -9,19 +9,23 @@ import UIKit
 
 class CharactersViewController: BasicController {
     
+    // - Property
+    private(set) var vm: ViewModel
+    
     // - UI
     private lazy var collectionView: UICollectionView = {
         let collectionLayout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: collectionLayout)
         collection.backgroundColor = .clear
         collection.translatesAutoresizingMaskIntoConstraints = false
-//        collection.dataSource = self
-//        collection.delegate = self
+        collection.dataSource = self
+        collection.delegate = self
         
         return collection
     }()
     
     init(viewModel: ViewModel) {
+        self.vm = viewModel
         super.init()
     }
     
@@ -35,6 +39,7 @@ class CharactersViewController: BasicController {
         view.backgroundColor = .background
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Characters"
+        vm.getPaginationRequest()
     }
     
  //    - Configure
@@ -52,22 +57,30 @@ class CharactersViewController: BasicController {
             ]
         )
     }
+    
+    override func binding() {
+        vm.$characterList
+            .sink { characterList in
+                print(characterList)
+            }
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: DataSource
 
-//extension CharactersViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//    
-//    }
-//}
+extension CharactersViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    }
+}
 
 // MARK: Delegate
 
 extension CharactersViewController: UICollectionViewDelegate {
-    
+
 }

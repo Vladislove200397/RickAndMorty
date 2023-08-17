@@ -27,8 +27,10 @@ class BasicController: UIViewController {
     private func configure() {
         makeLayout()
         makeConstraints()
+        binding()
     }
     
     func makeLayout() {}
     func makeConstraints() {}
+    func binding() {}
 }
