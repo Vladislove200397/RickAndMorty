@@ -18,6 +18,14 @@ class AboutCharacterController: BasicController {
     var isFirstLayout: Bool = true
     
     // - UI
+    lazy private var activityIndicatorView: UIActivityIndicatorView = {
+        $0.hidesWhenStopped = true
+        $0.style = .large
+        $0.color = .gray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIActivityIndicatorView())
+    
     private lazy var topView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -77,6 +85,7 @@ class AboutCharacterController: BasicController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        activityIndicatorView.startAnimating()
         vm.getCharacterInfo(for: vm.character)
         vm.getImage(for: vm.character)
     }
@@ -99,6 +108,7 @@ class AboutCharacterController: BasicController {
         topView.addSubview(characterStatusLabel)
         
         view.addSubview(tableView)
+        view.addSubview(activityIndicatorView)
     }
     
     override func makeConstraints() {
@@ -131,6 +141,10 @@ class AboutCharacterController: BasicController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            //activityIndicator
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
@@ -148,6 +162,7 @@ class AboutCharacterController: BasicController {
             .sink {[weak self] episodes in
                 guard let self else { return }
                 self.vm.data.append(episodes)
+                self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
             }
             .store(in: &cancellables)
@@ -161,6 +176,7 @@ class AboutCharacterController: BasicController {
             .sink(receiveValue: {[weak self] origin in
                 guard let self else { return }
                 self.vm.data.append([origin])
+                self.activityIndicatorView.stopAnimating()
                 self.tableView.reloadData()
             })
             .store(in: &cancellables)
