@@ -12,10 +12,9 @@ import UIKit
 class BasicViewModel {
     var cancellables: Set<AnyCancellable> = []
     
-    func showAlert(title: String, message: String, okHandler: @escaping ()->()) {
+    func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            okHandler()
         }
         alertController.addAction(okAction)
         

@@ -11,6 +11,7 @@ struct Content: Decodable {
     var id: Int
     var name: String
     var species: String
+    var status: String
     var type: String
     var gender: String
     var origin: OriginModel

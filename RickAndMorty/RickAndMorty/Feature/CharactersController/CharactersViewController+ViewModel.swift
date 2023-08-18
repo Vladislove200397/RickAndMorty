@@ -13,7 +13,7 @@ extension CharactersViewController {
         private var getDataService: NetworkManager<CharactersListModel>
         @Published private(set) var characterList: CharactersListModel?
         @Published private(set) var characters: [Content] = []
-        @Published private(set) var requestError: Error?
+        private(set) var requestError: Error?
         private(set) var currentPage: Int = 1
         private(set) var totalPages: Int = 0
         var isLoading: Bool = false
@@ -33,10 +33,7 @@ extension CharactersViewController {
                     totalPages = charactersPaginationData.info.pages
                 } catch {
                     requestError = error
-                    self.showAlert(title: "Error", message: error.localizedDescription) {[weak self] in
-                        guard let self else { return }
-                        self.getPaginationRequest(page: self.currentPage)
-                    }
+                    self.showAlert(title: "Error", message: error.localizedDescription)
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharactersViewController: BasicController {
+class CharactersViewController: BasicController, UINavigationBarDelegate {
     
     // - Property
     private(set) var vm: ViewModel
@@ -25,6 +25,7 @@ class CharactersViewController: BasicController {
         return collection
     }()
     
+    // - Lifecycle
     init(viewModel: ViewModel) {
         self.vm = viewModel
         super.init()
@@ -34,28 +35,33 @@ class CharactersViewController: BasicController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Characters"
         vm.getPaginationRequest(page: vm.currentPage)
     }
     
- //    - Configure
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Characters"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        title = " "
+    }
+    
+    // - Configure
     override func makeLayout() {
-        view.addSubview(collectionView)
+        view.safeAreaLayoutGuide.owningView?.addSubview(collectionView)
     }
 
     override func makeConstraints() {
-        NSLayoutConstraint.activate(
-            [
-                collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ]
-        )
+        ])
     }
     
     override func binding() {
@@ -93,12 +99,10 @@ extension CharactersViewController: UICollectionViewDataSource {
 
 extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellCount = 2.0
-        let inset = 16.0 / cellCount
+        let width = (collectionView.frame.width / 2) - 32
+        let height = (collectionView.frame.height / 3.7) - 32
 
-        let width = collectionView.frame.width / cellCount - inset
-        
-        return CGSize(width: width, height: 200)
+        return CGSize(width: width, height: height)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -106,6 +110,18 @@ extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+        let vc = AboutCharacterController(viewModel:
+                .init(
+                    character: vm.characters[indexPath.row] ,
+                    getOrigin: NetworkManager<OriginRequestModel>(),
+                    getEpisodes: NetworkManager<EpisodeModel>()
+                )
+        )
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23)
     }
 }

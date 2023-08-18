@@ -11,9 +11,11 @@ import Combine
 class CharacterView: UICollectionViewCell {
     // - Static
     static let id = String(describing: CharacterView.self)
+    
     // - Property
     private var loadImageTask: Task<Void, Never>?
     var cancellables: Set<AnyCancellable> = []
+    private(set) var vm: ViewModel?
     
     // - UI
     lazy private var imageView: UIImageView = {
@@ -53,6 +55,7 @@ class CharacterView: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // - Configure
     func makeLayout() {
         contentView.addSubview(imageView)
         imageView.addSubview(activityIndicatorView)
@@ -65,6 +68,8 @@ class CharacterView: UICollectionViewCell {
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            imageView.heightAnchor.constraint(equalToConstant: 140),
+            imageView.widthAnchor.constraint(equalToConstant: 140),
             
             //nameLabel
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
@@ -79,6 +84,8 @@ class CharacterView: UICollectionViewCell {
     }
     
     func setViewModel(_ vm: ViewModel) {
+        self.vm = vm
+        
         vm.$content
             .sink {[weak self] content in
                 guard let self else { return }

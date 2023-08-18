@@ -8,6 +8,10 @@
 import Foundation
 
 struct OriginModel: Decodable {
-    var name: String
     var url: String
+}
+
+struct OriginRequestModel: Decodable {
+    var name: String
+    var type: String
 }

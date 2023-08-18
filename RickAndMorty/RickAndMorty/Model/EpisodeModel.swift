@@ -9,6 +9,6 @@ import Foundation
 
 struct EpisodeModel: Decodable {
     var name: String
-    var air_Date: String
+    var air_date: String
     var episode: String
 }

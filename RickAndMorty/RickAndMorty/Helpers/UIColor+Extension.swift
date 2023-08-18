@@ -15,4 +15,17 @@ extension UIColor {
     static public var cellBackground: UIColor {
         return .init(named: "cellbackground")!
     }
+    
+    static public var greenTextColor: UIColor {
+        return .init(named: "greentextcolor")!
+    }
+    
+    static public var grayTextColor: UIColor {
+        return .init(named: "graytextcolor")!
+    }
+    
+    static public var imageBackground: UIColor {
+        return .init(named: "imagebackground")!
+    }
+    
 }

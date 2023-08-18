@@ -13,11 +13,11 @@ class BasicController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
     }
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        configure()
         view.backgroundColor = .background
     }
     

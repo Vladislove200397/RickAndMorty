@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +13,52 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="i4R-d5-vGw">
+                                <rect key="frame" x="20" y="79" width="353" height="719"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Qcs-f9-G0Q">
+                                <rect key="frame" x="126.66666666666669" y="139" width="140" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="H7j-Ry-mU2"/>
+                                    <constraint firstAttribute="height" constant="40" id="oqr-en-pow"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hole" translatesAutoresizingMaskIntoConstraints="NO" id="cAs-Kc-zjl">
+                                <rect key="frame" x="126.66666666666669" y="229" width="140" height="228"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="228" id="Fr8-rf-Yrf"/>
+                                    <constraint firstAttribute="width" constant="140" id="IJV-4o-hJe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" name="background"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i4R-d5-vGw" secondAttribute="trailing" constant="20" id="3Wu-nd-KOp"/>
+                            <constraint firstItem="i4R-d5-vGw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="F2s-Qi-01A"/>
+                            <constraint firstItem="i4R-d5-vGw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="cSa-Pk-5aA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i4R-d5-vGw" secondAttribute="bottom" constant="20" id="kLU-5V-PKW"/>
+                            <constraint firstItem="cAs-Kc-zjl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pzu-UT-hcB"/>
+                            <constraint firstItem="Qcs-f9-G0Q" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qKZ-Ef-8kD"/>
+                            <constraint firstItem="cAs-Kc-zjl" firstAttribute="top" secondItem="Qcs-f9-G0Q" secondAttribute="bottom" constant="50" id="qYa-1O-alu"/>
+                            <constraint firstItem="i4R-d5-vGw" firstAttribute="top" secondItem="Qcs-f9-G0Q" secondAttribute="top" constant="-60" id="wmp-h0-MeC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hole" width="140" height="228"/>
+        <image name="launchscreen" width="334" height="650"/>
+        <image name="logo" width="280" height="80"/>
+        <namedColor name="background">
+            <color red="0.015686274509803921" green="0.047058823529411764" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

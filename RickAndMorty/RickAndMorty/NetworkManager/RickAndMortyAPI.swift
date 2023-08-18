@@ -27,9 +27,7 @@ enum RickAndMortyAPI: RESTConstructor {
         switch self {
             case .getCharactersPagination:
                 return "character"
-            case .getCharacterInfo(let URL), .getCharacterImage(let URL), .getCharacterPlaceInfo(let URL), .getEpisodesWithChaearacter(let URL):
-                guard let URL else { return ""}
-                return URL
+            default: return ""
         }
     }
     
